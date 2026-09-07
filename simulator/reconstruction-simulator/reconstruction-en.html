@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Number reconstruction from paths</title>
+
+    <link rel="stylesheet" href="style-reconstruction.css">
+</head>
+
+<body>
+
+    <h1>
+        INTERACTIVE DIVISIBILITY GRAPH NUMBER RECONSTRUCTION SIMULATOR
+    </h1>
+
+<main id="principal">
+
+    <!-- =================================================
+         COLUMN 1
+    ================================================== -->
+
+    <section id="zonaReconstruccion">
+        <div class="tarjeta">
+            <h2>
+                🔄 Reconstruct number from walk
+            </h2>
+            <div class="campo">
+                <label for="modulo">
+                    Modulus
+                </label>
+                <input
+                    id="modulo"
+                    type="number"
+                    min="2"
+                    max="20"
+                    placeholder="Enter the modulus"
+                >
+            </div>
+            <div class="campo">
+                <label for="longitudRecorrido">
+                    Walk length
+                </label>
+                <input
+                    id="longitudRecorrido"
+                    type="number"
+                    min="1"
+                    max="50"
+                    placeholder="Enter the walk length"
+                >
+            </div>
+            <button
+                id="botonCrearRecorrido"
+                onclick="crearRecorridoInverso()"
+            >
+                Create walk
+            </button>
+        </div>
+
+        <!-- WALK -->
+
+        <div class="tarjeta">
+            <h2>
+                📍 Walk
+            </h2>
+            <p class="descripcion">
+                Enter the states of the walk.
+                The first state starts at 0.
+            </p>
+            <div id="contenedorRecorridoInverso">
+            </div>
+            <button
+                id="botonReconstruir"
+                onclick="procesarRecorridoInverso()"
+                disabled
+            >
+                Reconstruct number
+            </button>
+        </div>
+        <div class="tarjeta">
+            <button
+                id="botonNuevoEjercicio"
+                onclick="nuevoEjercicio()"
+            >
+                New exercise
+            </button>
+        </div>
+    </section>
+
+    <!-- =================================================
+         COLUMN 2
+    ================================================== -->
+
+    <section id="zonaResultados">
+        <div class="tarjeta">
+            <h2>
+                🔎 Walk steps
+            </h2>
+            <div id="posibilidadesRecorridoInverso">
+            </div>
+        </div>
+        <div
+            class="tarjeta"
+            id="tarjetaNumeros"
+        >
+            <h2>
+                🔢 Possible numbers
+            </h2>
+            <div id="numeroReconstruido">
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================
+         COLUMN 3
+    ================================================== -->
+
+    <section id="zonaGrafo">
+        <div id="cabeceraGrafo">
+            <h2>
+                Divisibility graph
+            </h2>
+            <p>
+                Representation of the entered walk
+                over the modulus states
+            </p>
+        </div>
+        <div id="cuadroGrafo">
+            <svg
+                id="grafo"
+                viewBox="0 0 700 700"
+                preserveAspectRatio="xMidYMid meet"
+            >
+                <defs>
+                    <marker
+                        id="flechaGris"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="gray"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaAzul"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaRoja"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaAzulPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaRojaPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </section>
+</main>
+    <script src="reconstruction-script-en.js"></script>
+
+</body>
+
+</html>

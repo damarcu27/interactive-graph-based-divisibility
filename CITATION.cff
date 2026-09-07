@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+title: >-
+  Interactive educational graph-based resources for
+  divisibility
+message: >-
+  If you use this resource in academic work, please cite the
+  corresponding Zenodo record. The software is released
+  under the GNU General Public License v3.0 (GPLv3), while
+  the educational PDF materials and documentation included
+  in the repository are released under the Creative Commons
+  Attribution 4.0 International License (CC BY 4.0).
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Martín-Cudero
+    affiliation: >-
+      Department of Financial Economics and Accounting, Area
+      of Mathematics Education, Rey Juan Carlos University,
+      Madrid, Spain. 
+    orcid: 'https://orcid.org/0009-0007-5946-6744'
+abstract: >-
+  Interactive educational resource aimed at Primary and
+  Secondary Education students to support the learning of
+  divisibility and modular arithmetic through a guided
+  learning activity and two complementary interactive
+  simulators. The guided activity provides structured tasks
+  that encourage students to observe, explore, formulate
+  hypotheses, construct, verify graph transitions, and check
+  divisibility. The simulators complement this approach by
+  allowing students to explore and visualize divisibility
+  graphs in different ways. They support both the automatic
+  visualization of how a given number is processed digit by
+  digit through the graph and the reverse reconstruction of
+  numbers from a specified sequence of states, showing the
+  digits compatible with each transition and the different
+  possible combinations. Together, the three resources
+  promote active and experiential learning by making
+  mathematical processes that are usually abstract visually
+  and dynamically accessible, while strengthening logical
+  reasoning, mathematical understanding, conjecture
+  formulation, systematic exploration, and independent
+  learning.
+keywords:
+  - divisibility
+  - directed graphs
+  - modular arithmetic
+  - mathematics education
+  - educational software
+  - interactive mathematics
+  - guided learning
+license: GPL-3.0
+version: 1.0.0
+date-released: '2026-09-02'

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Actividad interactiva basada en grafos para el estudio de la divisibilidad
+    </title>
+<link rel="stylesheet" href="style_activity.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         TÍTULO
+        ===================================================== -->
+
+    <h1>
+        ACTIVIDAD INTERACTIVA BASADA EN GRAFOS PARA EL ESTUDIO DE LA DIVISIBILIDAD
+    </h1>
+    <div id="principal">
+
+        <!-- =================================================
+             IZQUIERDA
+             ================================================= -->
+
+        <div id="controles">
+
+            <!-- =============================================
+                 FASE 1
+                 ============================================= -->
+
+            <div class="tarjeta">
+                <h2>
+                    🧩 Construir el grafo de divisibilidad
+                </h2>
+                <div class="campo">
+                    <label for="modulo">
+                        Módulo
+                    </label>
+                    <div class="moduloFila">
+                        <input
+                            id="modulo"
+                            type="number"
+                            min="2"
+                            max="20"
+                            value=""
+                        >
+                        <button onclick="crearGrafo()">
+                            Crear grafo
+                        </button>
+                    </div>
+                </div>
+                <button
+                    id="botonComprobarGrafo"
+                    onclick="comprobarGrafo()"
+                    disabled
+                >
+                    Comprobar grafo
+                </button>
+                <div id="resultadoGrafo"></div>
+            </div>
+
+            <!-- =============================================
+                 FASE 2
+                 ============================================= -->
+
+            <div class="tarjeta">
+                <h2>
+                    🔗 Realizar el recorrido
+                </h2>
+                <div class="campo">
+                    <label for="numero">
+                        Número
+                    </label>
+                    <input
+                        id="numero"
+                        value=""
+                        disabled
+                        oninput="activarNuevoNumero()"
+                    >
+                </div>
+                <button
+                    id="botonRecorrido"
+                    onclick="iniciarRecorrido()"
+                    disabled
+                >
+                    Comenzar recorrido
+                </button>
+                <button
+                    id="botonComprobarRecorrido"
+                    onclick="comprobarRecorrido()"
+                    disabled
+                >
+                    Comprobar recorrido
+                </button>
+                <div id="resultadoRecorrido"></div>
+            </div>
+
+            <!-- =============================================
+                 FASE 3
+                 ============================================= -->
+
+            <div class="tarjeta">
+                <h2>
+                    🎯 Resultado final
+                </h2>
+                <div class="resultadoFila">
+                    <div class="campo">
+                        <label for="restoFinal">
+                            Resto final
+                        </label>
+                        <input
+                            id="restoFinal"
+                            type="number"
+                            min="0"
+                            disabled
+                            oninput="comprobarDatosFinales()"
+                        >
+                    </div>
+                    <div class="campo">
+                        <label>
+                            ¿Es divisible?
+                        </label>
+                        <div class="radios">
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="divisible"
+                                    value="si"
+                                    disabled
+                                    onclick="comprobarDatosFinales()"
+                                >
+                                Sí
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="divisible"
+                                    value="no"
+                                    disabled
+                                    onclick="comprobarDatosFinales()"
+                                >
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button
+                    id="botonResultadoFinal"
+                    onclick="comprobarResultadoFinal()"
+                    disabled
+                >
+                    Comprobar resultado final
+                </button>
+                <div id="resultadoFinal"></div>
+            </div>
+
+            <!-- =============================================
+                 BOTONES FINALES
+                 ============================================= -->
+
+            <div class="tarjeta">
+                <div class="botonesFinales">
+                    <button
+                        id="botonNuevoNumero"
+                        onclick="nuevoNumero()"
+                        disabled
+                    >
+                        Nuevo número
+                    </button>
+                    <button
+                        onclick="nuevoEjercicio()"
+                        class="botonNuevoEjercicio"
+                    >
+                        Nuevo ejercicio
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================================================
+             DERECHA: GRAFO
+             ================================================= -->
+
+        <div id="zonaGrafo">
+            <div id="cabeceraGrafo">
+                <h2>
+                    Grafo de divisibilidad
+                </h2>
+            	<p>
+                    Representación gráfica del proceso de divisibilidad
+            	</p>
+            </div>
+            <div id="cuadroGrafo">
+                <svg
+                    id="grafo"
+                    width="700"
+                    height="700"
+                >
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="activity-script-es.js"></script>
+</body>
+
+</html>

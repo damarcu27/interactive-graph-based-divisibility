@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisibility simulator</title>
+    <link rel="stylesheet" href="style-activity-simulator.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     TITLE
+====================================================== -->
+
+<h1>
+    INTERACTIVE GRAPH-BASED SIMULATOR FOR DIVISIBILITY
+</h1>
+
+<!-- =====================================================
+     MAIN STRUCTURE
+     
+     LEFT | CENTER | RIGHT
+====================================================== -->
+
+<div id="principal">
+
+    <!-- =================================================
+         COLUMN 1
+         PARAMETERS AND CONTROLS
+    ================================================== -->
+
+    <div id="columnaIzquierda">
+
+        <!-- =============================================
+             PARAMETERS
+        ============================================== -->
+
+        <div class="tarjeta">
+            <h2>
+                ⚙️ Simulator parameters
+            </h2>
+            <div class="campo">
+                <label for="modulo">
+                    Modulus
+                </label>
+                <input
+                    id="modulo"
+                    type="number"
+                    min="2"
+                    max="20"
+                    placeholder="Enter the modulus"
+                >
+            </div>
+            <div class="campo">
+                <label for="numero">
+                    Number
+                </label>
+                <input
+                    id="numero"
+                    type="number"
+                    min="0"
+                    placeholder="Enter the number"
+                >
+            </div>
+            <div class="campo">
+                <label for="velocidad">
+                    Animation speed
+                </label>
+                <input
+                    id="velocidad"
+                    type="range"
+                    min="100"
+                    max="1500"
+                    value="700"
+                >
+            </div>
+        </div>
+
+        <!-- =============================================
+             AUTOMATIC SIMULATION
+        ============================================== -->
+
+        <div class="tarjeta">
+            <h2>
+                ▶️ Automatic simulation
+            </h2>
+            <button
+                id="botonIniciar"
+                onclick="iniciarDesdeCero()"
+            >
+                Start automatic simulation
+            </button>
+            <button
+                id="pausa"
+                onclick="pausaReanudar()"
+            >
+                Pause
+            </button>
+        </div>
+
+        <!-- =============================================
+             MANUAL SIMULATION
+        ============================================== -->
+
+        <div class="tarjeta">
+            <h2>
+                🖐️ Manual simulation
+            </h2>
+            <button
+                id="botonManual"
+                onclick="iniciarManual()"
+            >
+                Start manual simulation
+            </button>
+            <div class="campo">
+                <div id="textoPasoManual">
+                    Step 0 / 0
+                </div>
+                <input
+                    id="pasoManual"
+                    type="range"
+                    min="0"
+                    max="0"
+                    value="0"
+                    step="1"
+                    disabled
+                >
+            </div>
+        </div>
+
+        <!-- =============================================
+             NEW SIMULATION
+        ============================================== -->
+
+        <div class="tarjeta">
+            <button
+                id="botonnuevaSimulacion"
+                onclick="nuevaSimulacion()"
+            >
+                New simulation
+            </button>
+        </div>
+    </div>
+
+    <!-- =================================================
+         COLUMN 2
+         NUMBER IN PROCESS + INFORMATION
+    ================================================== -->
+
+    <div id="columnaCentro">
+
+        <!-- =============================================
+             NUMBER IN PROCESS
+        ============================================== -->
+
+        <div class="tarjeta tarjeta-numero">
+            <h2>
+                🔢 Number being processed
+            </h2>
+            <div id="numeroAnimado">
+            </div>
+            <div id="calculoAnimado" style="display: none;">
+            </div>
+        </div>
+
+        <!-- =============================================
+             INFORMATION
+        ============================================== -->
+
+        <div
+            id="contenedorInfo"
+            class="tarjeta tarjeta-informacion"
+        >
+            <h2>
+                📊 Information
+            </h2>
+            <div
+                id="informacion"
+                class="panel-info"
+                style="display: none;"
+            >
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================
+         COLUMN 3
+         GRAPH
+    ================================================== -->
+
+    <div id="columnaDerecha">
+
+        <!-- =============================================
+             GRAPH HEADER
+        ============================================== -->
+
+        <div id="cabeceraGrafo">
+            <h2>
+                Divisibility graph
+            </h2>
+            <p>
+                Graphical representation of the divisibility process
+            </p>
+        </div>
+
+        <!-- =============================================
+             GRAPH
+        ============================================== -->
+
+        <div id="cuadroGrafo">
+            <svg
+                id="grafo"
+                viewBox="0 0 700 700"
+                preserveAspectRatio="xMidYMid meet"
+            >
+                <defs>
+
+                    <!-- =================================
+                         GRAY ARROW
+                    ================================== -->
+
+                    <marker
+                        id="flechaGris"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="gray"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         BLUE ARROW
+                    ================================== -->
+
+                    <marker
+                        id="flechaAzul"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         RED ARROW
+                    ================================== -->
+
+                    <marker
+                        id="flechaRoja"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="red"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         SMALL BLUE ARROW
+                    ================================== -->
+
+                    <marker
+                        id="flechaAzulPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         SMALL RED ARROW
+                    ================================== -->
+
+                    <marker
+                        id="flechaRojaPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="activity-simulator-script-en.js"></script>
+
+</body>
+
+</html>

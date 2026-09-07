@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recursos interactivos · Interactive resources</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+    }
+
+    body {
+      font: 15px/1.6 -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #2b2f36;
+      background: #fbfbfa;
+    }
+
+    .envoltorio {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 42px 20px 70px;
+    }
+
+    /* =========================================
+       CONTENEDOR DE LAS DOS VERSIONES
+       ========================================= */
+
+    .versiones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* =========================================
+       CADA VERSIÓN
+       ========================================= */
+
+    .version {
+      padding: 0 42px;
+    }
+
+    .version-es {
+      border-left: 1px solid #e1e4e8;
+      border-right: 1px solid #e1e4e8;
+     }
+
+    .version-en {
+      border-right: 1px solid #e1e4e8;
+     }
+
+    /* =========================================
+       CABECERA
+       ========================================= */
+
+    .cabecera {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .cabecera h1 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin: 0 0 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .cabecera .sub {
+      color: #6b7280;
+      font-size: 15px;
+      margin: 0 0 20px;
+      text-align: center;
+    }
+
+    .cabecera p {
+      max-width: 65ch;
+      margin: 0 auto;
+      color: #4f5661;
+      text-align: left;
+    }
+
+    /* =========================================
+       TÍTULO DE RECURSOS
+       ========================================= */
+
+    .titulo-recursos {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #8a919c;
+      font-weight: 600;
+      margin: 0 0 14px;
+    }
+
+    /* =========================================
+       TARJETAS
+       ========================================= */
+
+    .rejilla {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .tarjeta {
+      background: #fff;
+      border: 1px solid #e6e8ec;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .15s, transform .15s;
+    }
+
+    .tarjeta:hover {
+      box-shadow: 0 8px 26px rgba(20,25,35,.10);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       BARRA DE COLOR
+       ========================================= */
+
+    .banda {
+      height: 5px;
+      flex-shrink: 0;
+    }
+
+    /* =========================================
+       CUERPO
+       ========================================= */
+
+    .cuerpo {
+      padding: 17px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .cuerpo h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .cuerpo p {
+      margin: 0 0 15px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #5a616b;
+      flex: 1;
+    }
+
+   .cuerpo h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .cuerpo h3 a:hover {
+      color: #2f62a8;
+    }
+
+    /* =========================================
+       ENLACES
+       ========================================= */
+
+    .enlaces {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .abrir {
+      display: inline-block;
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1px solid #d5d9e0;
+      border-radius: 7px;
+      background: #fff;
+      color: #3d4450;
+      text-decoration: none;
+    }
+
+    .abrir:hover {
+      background: #f0f2f5;
+    }
+
+    .ficha-ejercicios {
+      transition: box-shadow .15s, transform .15s;
+    }
+
+    .ficha-ejercicios:hover {
+      box-shadow: 0 8px 26px rgba(20,25,35,.10);
+      transform: translateY(-2px);
+    }
+
+    .titulo-ficha {
+      color: #2b2f36 !important;
+      text-decoration: none;
+      transition: color .15s;
+    }
+
+    .titulo-ficha:hover {
+      color: #2f62a8 !important;
+    }
+
+    .boton-ficha {
+      transition: background .15s;
+    }
+
+    .boton-ficha:hover {
+      background: #254f87 !important;
+    }
+
+    .ficha {
+      font-size: 12.5px;
+      color: #6b7280;
+      text-decoration: none;
+    }
+
+    .ficha:hover {
+      color: #2f62a8;
+      text-decoration: underline;
+    }
+
+    /* =========================================
+       PIE
+       ========================================= */
+
+    .pie {
+      margin-top: 42px;
+      padding-top: 18px;
+      border-top: 1px solid #e6e8ec;
+      font-size: 12.5px;
+      color: #6b7280;
+      text-align: left;
+      width: 100%;
+    }
+
+    /* =========================================
+       MÓVILES
+       ========================================= */
+
+    @media (max-width: 900px) {
+
+      .versiones {
+        grid-template-columns: 1fr;
+      }
+
+      .version {
+        padding: 0;
+      }
+
+     .version-es {
+       border-left: none;
+       border-right: none;
+       border-bottom: 1px solid #e1e4e8;
+       padding-bottom: 40px;
+       margin-bottom: 40px;
+     }
+
+     .version-en {
+       border-right: none;
+     }
+
+     .cabecera h1 {
+       font-size: 26px;
+     }
+
+     .envoltorio {
+       padding: 30px 18px 50px;
+     }
+  }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="envoltorio">
+
+<div class="versiones">
+
+<!-- ================================================= -->
+<!-- VERSIÓN EN ESPAÑOL                                -->
+<!-- ================================================= -->
+
+<section class="version version-es">
+
+  <!-- CABECERA -->
+
+  <header class="cabecera">
+
+    <h1>
+      Grafos de divisibilidad
+    </h1>
+
+    <p class="sub">
+      🌐🇪🇸 · Recurso educativo interactivo
+    </p>
+
+  </header>
+
+  <!-- RECURSOS -->
+
+  <h2 class="titulo-recursos">
+    Recursos
+  </h2>
+
+  <div class="rejilla">
+
+    <!-- ================================================= -->
+    <!-- ACTIVIDAD GUIADA -->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#b03a8a"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Razonamiento · Construcción · Resolución
+        </p>
+
+        <h3>
+	  <a href="guided-activity/activity-es.html">
+          Actividad guiada
+	  </a>
+        </h3>
+
+        <p>
+          Actividad interactiva para comprobar si un número es divisible
+	  por un módulo a partir del grafo de divisibilidad correspondiente.
+	  La divisibilidad se trabaja como un proceso de exploración,
+          razonamiento y toma de decisiones, en lugar de limitarse a 
+	  realizar la división y comprobar el resultado.
+        </p>
+
+        <p>
+          <strong>Nivel educativo:</strong>
+          actividad adecuada para  tercer ciclo de Educación Primaria y para
+	  toda la etapa de Educación Secundaria.
+        </p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="guided-activity/activity-es.html"
+          >
+            Abrir actividad
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-guided-activity-es.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Ejemplo ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- ================================================= -->
+    <!-- SIMULADOR 1-->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#1e7a44"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Exploración · Visualización · Comprensión
+        </p>
+
+        <h3>
+          <a href="simulator/activity-simulator/activity-simulator-es.html">
+	  Simulador 1
+	  </a>
+        </h3>
+
+        <p>
+          Herramienta interactiva para explorar visualmente cómo un 
+	  grafo de divisibilidad permite determinar el resto de una
+	  división. El usuario selecciona un módulo e introduce un número,
+	  y el recurso genera automáticamente la representación correspondiente.
+	  Durante la simulación, se puede seguir el estado paso a paso, observar
+	  las transiciones y el recorrido realizado, y comprobar el resto obtenido
+	  al finalizar.
+        </p>
+
+        <p>
+          <strong>Especialmente adecuado para:</strong>
+          introducir el procedimiento, explorar ejemplos, visualizar
+          patrones, formular conjeturas y comprobar de manera inmediata
+          el resultado de diferentes casos.
+        </p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="simulator/activity-simulator/activity-simulator-es.html"
+          >
+            Abrir simulador
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-activity-simulator-es.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Ejemplo ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- ================================================= -->
+    <!-- SIMULADOR 2-->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#c8443a"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Exploración · Visualización · Comprensión
+        </p>
+
+        <h3>
+          <a href="simulator/reconstruction-simulator/reconstruction-es.html">
+	  Simulador 2
+	  </a>
+        </h3>
+
+        <p>
+          Herramienta interactiva para explorar cómo puede reconstruirse un número
+	  a partir de un recorrido en un grafo de divisibilidad. El usuario selecciona
+ 	  un módulo y la longitud del recorrido y, a continuación, construye una
+	  secuencia de estados del grafo. Para cada transición, el recurso determina 
+	  qué dígitos pueden producirla y permite comprobar si el recorrido es compatible
+	  con el módulo seleccionado. Una vez completado el recorrido, el simulador genera
+	  todos los números que pueden dar lugar a esa secuencia de estados.
+        </p>
+
+        <p>
+          <strong>Especialmente adecuado para:</strong>
+          niveles educativos más avanzados (últimos cursos de Educación Secundaria y niveles
+	  posteriores), en los que se busca explorar diferentes recorridos, analizar las
+	  posibilidades asociadas a cada transición, formular conjeturas y reconstruir números
+	  a partir de información parcial.
+        </p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="simulator/reconstruction-simulator/reconstruction-es.html"
+          >
+            Abrir simulador
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-reconstruction-es.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Ejemplo ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <!-- ========================================= -->
+  <!-- FICHA DE EJERCICIOS                        -->
+  <!-- ========================================= -->
+
+  <section
+    class="ficha-ejercicios"
+    style="
+      margin-top:34px;
+      padding:20px 24px;
+      border-radius:12px;
+      background:#ffffff;
+      border:1px solid #d9dee6;
+      box-shadow:0 4px 14px rgba(20,25,35,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    "
+  >
+
+    <div style="flex:1;">
+
+      <h3
+        style="
+          margin:0 0 5px;
+          font-size:18px;
+          line-height:1.3;
+          color:#2b2f36;
+        "
+      >
+	<a
+	  class="titulo-ficha"
+	  href="materials/worksheet-es.pdf"
+	  target="_blank"
+	  rel="noopener"
+	  style="color:inherit; text-decoration:none;"
+	>
+          📘 Ficha de ejercicios
+	</a>
+      </h3>
+
+      <p
+        style="
+          margin:0;
+          font-size:13.5px;
+          line-height:1.5;
+          color:#5a616b;
+        "
+      >
+        Para practicar y aplicar lo aprendido sobre
+	grafos de divisibilidad.
+      </p>
+
+    </div>
+
+    <a
+      class="boton-ficha"
+      href="materials/worksheet-es.pdf"
+      target="_blank"
+      rel="noopener"
+      style="
+        display:inline-flex;
+        align-items:center;
+        gap:7px;
+        flex-shrink:0;
+        padding:9px 15px;
+        border-radius:8px;
+        background:#2f62a8;
+        color:#fff;
+        text-decoration:none;
+        font-size:13px;
+        font-weight:600;
+      "
+    >
+      Abrir ejercicios ↗
+    </a>
+
+  </section>
+
+  <!-- PIE -->
+
+  <footer class="pie">
+
+    <p>
+      <strong>© 2026 Daniel Martín-Cudero</strong>
+    </p>
+
+    <p>
+      Departamento de Economía Financiera y Contabilidad ·
+      Área de Didáctica de la Matemática ·
+      Universidad Rey Juan Carlos · Madrid
+    </p>
+
+  </footer>
+
+</section>
+
+<!-- ================================================= -->
+<!-- ENGLISH VERSION                                   -->
+<!-- ================================================= -->
+
+<section class="version version-en">
+
+  <!-- HEADER -->
+
+  <header class="cabecera">
+
+    <h1>
+      Divisibility graphs
+    </h1>
+
+    <p class="sub">
+      🌐🇬🇧 · Interactive educational resources
+    </p>
+
+  </header>
+
+  <!-- RESOURCES -->
+
+  <h2 class="titulo-recursos">
+    Resources
+  </h2>
+
+  <div class="rejilla">
+
+    <!-- ================================================= -->
+    <!-- GUIDED ACTIVITY -->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#2f62a8"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Reasoning · Construction · Problem solving
+        </p>
+
+        <h3>
+          <a href="guided-activity/activity-en.html">
+	  Guided activity
+	  </a>
+        </h3>
+
+	<p>
+  	  Interactive activity to check whether a number is divisible
+  	  by a given modulus using the corresponding divisibility graph.
+  	  Divisibility is approached as a process of exploration,
+  	  reasoning, and decision-making, rather than simply performing
+  	  the division and checking the result.
+	</p>
+
+	<p>
+  	  <strong>Educational level:</strong> activity suitable for Grades
+  	  5 and 6 of Primary Education and Grades 7-10 of Secondary Education.
+	</p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="guided-activity/activity-en.html"
+          >
+            Open activity
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-guided-activity-en.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Example ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- ================================================= -->
+    <!-- SIMULATOR 1-->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#e07a5f"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Exploration · Visualisation · Understanding
+        </p>
+
+        <h3>
+          <a href="simulator/activity-simulator/activity-simulator-en.html">
+	  Simulator 1
+	  </a>
+        </h3>
+
+	<p> 
+  	  Interactive tool for visually exploring how a divisibility graph can 
+  	  be used to determine the remainder of a division. The user selects a 
+ 	  modulus and enters a number, and the resource automatically generates 
+  	  the corresponding representation. During the simulation, the state can 
+  	  be followed step by step, allowing the transitions and the walk taken 
+          to be observed, as well as the remainder obtained at the end.
+	</p> 
+
+	<p> 
+  	  <strong>Especially suitable for:</strong> 
+  	  introducing the procedure, exploring examples, visualizing patterns, 
+  	  formulating conjectures, and immediately checking the results of 
+  	  different cases.
+        </p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="simulator/activity-simulator/activity-simulator-en.html"
+          >
+            Open simulator
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-activity-simulator-en.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Example ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- ================================================= -->
+    <!-- SIMULATOR 2-->
+    <!-- ================================================= -->
+
+    <article class="tarjeta">
+
+      <div
+        class="banda"
+        style="background:#4fa3a5"
+      ></div>
+
+      <div class="cuerpo">
+
+        <p class="etiqueta">
+          Exploration · Visualisation · Understanding
+        </p>
+
+        <h3>
+          <a href="simulator/reconstruction-simulator/reconstruction-en.html">
+	  Simulator 2
+	  </a>
+        </h3>
+
+	<p> 
+  	  Interactive tool for exploring how a number can be reconstructed from a
+	  walk through a divisibility graph. The user selects a modulus and the length
+	  of the walk and then builds a sequence of graph states. For each transition,
+	  the resource determines which digits can produce that transition and checks
+	  whether the walk is compatible with the selected modulus. Once the walk is
+	  complete, the simulator generates all numbers that could produce the given
+	  sequence of states.
+	</p> 
+
+	<p> 
+  	  <strong>Especially suitable for:</strong> 
+  	  more advanced educational levels (final years of Secondary Education and beyond),
+	  where students can explore different walks, analysing the possibilities associated
+	  with each transition, formulating conjectures, and reconstructing numbers from
+	  partial information.
+        </p>
+
+        <div class="enlaces">
+
+          <a
+            class="abrir"
+            href="simulator/reconstruction-simulator/reconstruction-en.html"
+          >
+            Open simulator
+          </a>
+
+          <a
+            class="ficha"
+            href="materials/example-reconstruction-en.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            📝 Example ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <!-- ========================================= -->
+  <!-- FICHA DE EJERCICIOS                        -->
+  <!-- ========================================= -->
+
+  <section
+    class="ficha-ejercicios"
+    style="
+      margin-top:34px;
+      padding:20px 24px;
+      border-radius:12px;
+      background:#ffffff;
+      border:1px solid #d9dee6;
+      box-shadow:0 4px 14px rgba(20,25,35,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    "
+  >
+
+    <div style="flex:1;">
+
+      <h3
+        style="
+          margin:0 0 5px;
+          font-size:18px;
+          line-height:1.3;
+          color:#2b2f36;
+        "
+      >
+	<a
+	  class="titulo-ficha"
+	  href="materials/worksheet-es.pdf"
+	  target="_blank"
+	  rel="noopener"
+	  style="color:inherit; text-decoration:none;"
+	>
+          📘 Practice worksheet
+	</a>
+      </h3>
+
+      <p
+        style="
+          margin:0;
+          font-size:13.5px;
+          line-height:1.5;
+          color:#5a616b;
+        "
+      >
+        To practise and apply what you have learned about
+	divisibility graphs.
+      </p>
+
+    </div>
+
+    <a
+      class="boton-ficha"
+      href="materials/worksheet-en.pdf"
+      target="_blank"
+      rel="noopener"
+      style="
+        display:inline-flex;
+        align-items:center;
+        gap:7px;
+        flex-shrink:0;
+        padding:9px 15px;
+        border-radius:8px;
+        background:#2f62a8;
+        color:#fff;
+        text-decoration:none;
+        font-size:13px;
+        font-weight:600;
+      "
+    >
+      Open worksheet ↗
+    </a>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer class="pie">
+
+    <p>
+      <strong>© 2026 Daniel Martín-Cudero</strong>
+    </p>
+
+    <p>
+      Department of Financial Economics and Accounting ·
+      Area of Mathematics Education ·
+      Rey Juan Carlos University · Madrid, Spain
+    </p>
+
+  </footer>
+
+</section>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

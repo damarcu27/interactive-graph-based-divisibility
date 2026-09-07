@@ -1,0 +1,695 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f0f7ff;
+    color: #1e293b;
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+h1 {
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 22px;
+    text-align: center;
+    font-size: 26px;
+    color: white;
+    background: blue;
+    border-radius: 16px;
+    box-shadow:
+        0 6px 20px rgba(96, 165, 250, 0.18);
+    line-height: 1.3;
+}
+
+/* =====================================================
+   MAIN STRUCTURE
+===================================================== */
+
+#principal {
+    width: 100%;
+    display: grid;
+    grid-template-columns:
+        320px
+        500px
+        minmax(0,1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+/* =====================================================
+   LEFT COLUMN
+===================================================== */
+
+#columnaIzquierda {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* =====================================================
+   CENTRAL COLUMN
+===================================================== */
+
+#columnaCentro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 0;
+}
+
+/* =====================================================
+   RIGHT COLUMN
+===================================================== */
+
+#columnaDerecha {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =====================================================
+   CONTROLES
+===================================================== */
+
+#controles {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* =====================================================
+   FRAME
+===================================================== */
+
+.tarjeta {
+    width: 100%;
+    padding: 18px;
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 15px;
+    box-shadow:
+        0 4px 15px rgba(59, 130, 246, 0.05);
+}
+
+.tarjeta h2 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    color: #1e293b;
+}
+
+/* =====================================================
+   FIELDS
+===================================================== */
+
+.campo {
+    margin-bottom: 14px;
+}
+
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #64748b;
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: #1e293b;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+}
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: #93c5fd;
+    box-shadow:
+        0 0 0 3px rgba(147, 197, 253, 0.20);
+}
+#numero::-webkit-inner-spin-button,
+#numero::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#numero {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* =====================================================
+   SPEED CONTROL
+===================================================== */
+
+#velocidad {
+    width: 100%;
+    height: 6px;
+    margin: 10px 0 5px;
+    padding: 0;
+    accent-color: blue;
+    cursor: pointer;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    margin-bottom: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:last-child {
+    margin-bottom: 0;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: #dff4ff;
+    border-color: #93c5fd;
+    color: #1e293b;
+}
+
+#botonIniciar {
+    background: blue;
+    border-color: blue;
+    color: white;
+}
+
+#botonIniciar:hover {
+    background: #0000cc;
+    border-color: #0000cc;
+    color: white;
+}
+
+#botonManual {
+    background: blue;
+    border-color: blue;
+    color: white;
+}
+
+#botonManual:hover {
+    background: #0000cc;
+    border-color: #0000cc;
+    color: white;
+}
+
+#botonnuevaSimulacion {
+    background: blue;
+    border-color: blue;
+    color: white;
+}
+
+#botonnuevaSimulacion:hover {
+    background: #0000cc;
+    border-color: #0000cc;
+    color: white;
+}
+
+#pausa {
+    background: white;
+    color: #64748b;
+}
+
+#pausa:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: #dff4ff;
+    border-color: #93c5fd;
+    color: #1e293b;
+}
+
+button:disabled {
+    background: #f8fafc;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =====================================================
+   NUMBER BEING PROCESSED
+===================================================== */
+
+.tarjeta-numero {
+    width: 100%;
+}
+
+#numeroAnimado {
+    margin-top: 5px;
+    min-height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    font-family: monospace;
+    letter-spacing: 8px;
+}
+
+#numeroAnimado span {
+    color: black;
+    transition: 0.2s;
+}
+
+#numeroAnimado .activo {
+    color: red;
+    font-weight: bold;
+}
+
+#calculoAnimado {
+    margin-top: 15px;
+    padding: 12px 15px;
+    width: 100%;
+    min-height: 30px;
+    text-align: left;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #334155;
+    line-height: 1.35;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#calculoAnimado .operacionActual {
+    margin: 0;
+    padding: 2px 0;
+    line-height: 1.2;
+    white-space: pre;
+}
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+#contenedorInfo {
+    width: 100%;
+    padding: 18px;
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 15px;
+    box-shadow:
+        0 4px 15px rgba(59, 130, 246, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* =====================================================
+   FINAL RESULT
+===================================================== */
+
+.resultadoFinal {
+    margin-top: 12px;
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #1e293b;
+    background: #eef6ff;
+    border: 2px solid blue;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.recuadroRecorrido {
+    margin-top: 12px;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #1e293b;
+    background: #fff5f5;
+    border: 2px solid red;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.recuadroRestoFinal {
+    margin-top: 12px;
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #1e293b;
+    background: #f0fff4;
+    border: 2px solid #22c55e;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   TITLES
+===================================================== */
+
+#contenedorInfo h2 {
+    display: block;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 18px;
+    color: #1e293b;
+}
+
+#contenedorInfo .panel-info {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    background: #f8fbff;
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* =====================================================
+   ELEMENTS GENERATED BY JAVASCRIPT
+===================================================== */
+
+#informacion > div,
+#informacion > p,
+#informacion > span {
+    display: block;
+    width: 100%;
+    margin: 0 0 8px;
+}
+#informacion > div:last-child,
+#informacion > p:last-child,
+#informacion > span:last-child {
+    margin-bottom: 0;
+}
+
+/* =====================================================
+   WALK
+===================================================== */
+
+#informacion .recorrido {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #dbeafe;
+}
+
+/* =====================================================
+   MANUAL SLIDER
+===================================================== */
+
+#pasoManual {
+    width: 100%;
+    height: 6px;
+    margin: 10px 0 5px;
+    padding: 0;
+    accent-color: blue;
+    cursor: pointer;
+}
+
+#pasoManual:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#textoPasoManual {
+    margin-top: 8px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* =====================================================
+   GRAPH AREA
+===================================================== */
+
+#zonaGrafo {
+    width: 100%;
+    min-width: 0;
+}
+
+#cabeceraGrafo {
+    width: 100%;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 15px;
+    box-shadow:
+        0 4px 15px rgba(59, 130, 246, 0.05);
+}
+
+#cabeceraGrafo h2 {
+    margin: 0;
+    font-size: 21px;
+    color: #1e293b;
+}
+
+#cabeceraGrafo p {
+    margin: 5px 0 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+#cuadroGrafo {
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    background: white;
+    border: 1px solid #dbeafe;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(59, 130, 246, 0.07);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* =====================================================
+   SVG
+===================================================== */
+
+#grafo {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 700px;
+    aspect-ratio: 1 / 1;
+    background: white;
+    flex-shrink: 1;
+}
+
+/* =====================================================
+   REMOVE OLD INFORMATION POSITIONING
+   WITHIN THE GRAPH
+===================================================== */
+
+#cuadroGrafo #contenedorInfo {
+    position: static;
+    top: auto;
+    left: auto;
+    z-index: auto;
+}
+
+/* =====================================================
+TABLET
+===================================================== */
+
+@media (max-width: 1200px) {
+
+#principal {
+grid-template-columns:
+280px
+400px
+minmax(0,1fr);
+gap: 15px;
+}
+
+#numeroAnimado {
+font-size: 32px;
+letter-spacing: 5px;
+}
+
+#grafo {
+width: min(700px, 100%);
+height: auto;
+}
+
+#cuadroGrafo {
+min-height: 0;
+}
+
+}
+
+/* =====================================================
+SMALL TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+
+#principal {
+grid-template-columns: 280px minmax(0,1fr);
+gap: 15px;
+}
+
+#columnaDerecha {
+grid-column: 1 / -1;
+}
+
+#grafo {
+width: 100%;
+max-width: 700px;
+height: autox;
+}
+
+#cuadroGrafo {
+min-height: 0;
+}
+
+}
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+body {
+padding: 10px;
+}
+
+h1 {
+font-size: 22px;
+padding: 18px 10px;
+}
+
+#principal {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+#columnaIzquierda,
+#columnaCentro,
+#columnaDerecha {
+width: 100%;
+}
+
+.tarjeta {
+padding: 15px;
+}
+
+#numeroAnimado {
+font-size: 28px;
+letter-spacing: 3px;
+overflow-x: auto;
+}
+
+#calculoAnimado {
+font-size: 14px;
+overflow-x: auto;
+}
+
+#calculoAnimado .operacionActual {
+white-space: normal;
+}
+
+#contenedorInfo {
+padding: 15px;
+}
+
+#cabeceraGrafo {
+padding: 15px;
+}
+
+#cabeceraGrafo h2 {
+font-size: 19px;
+}
+
+#cabeceraGrafo p {
+font-size: 14px;
+}
+
+#cuadroGrafo {
+width: 100%;
+min-height: 0;
+}
+
+#grafo {
+width: 100%;
+height: auto;
+max-width: 700px;
+}
+
+}
+
+/* =====================================================
+SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+
+body {
+padding: 6px;
+}
+
+h1 {
+font-size: 19px;
+padding: 15px 8px;
+}
+
+.tarjeta {
+padding: 12px;
+}
+
+#numeroAnimado {
+font-size: 24px;
+letter-spacing: 2px;
+}
+
+#calculoAnimado {
+padding: 10px;
+font-size: 13px;
+}
+
+button {
+font-size: 13px;
+}
+
+#contenedorInfo {
+padding: 12px;
+}
+
+}

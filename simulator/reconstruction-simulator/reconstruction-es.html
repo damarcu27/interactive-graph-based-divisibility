@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconstrucción de números mediante recorridos</title>
+    <link rel="stylesheet" href="style-reconstruction.css">
+</head>
+
+<body>
+
+    <h1> 
+        SIMULADOR INTERACTIVO DE RECONSTRUCCIÓN DE NÚMEROS BASADO EN GRAFOS
+	DE DIVISIBILIDAD
+    </h1>
+
+<main id="principal">
+
+    <!-- =================================================
+         COLUMNA 1
+    ================================================== -->
+
+    <section id="zonaReconstruccion">
+        <div class="tarjeta">
+            <h2>
+                🔄 Reconstruir número desde recorrido
+            </h2>
+            <div class="campo">
+                <label for="modulo">
+                    Módulo
+                </label>
+                <input
+                    id="modulo"
+                    type="number"
+                    min="2"
+                    max="20"
+                    placeholder="Introduce el módulo"
+                >
+            </div>
+            <div class="campo">
+                <label for="longitudRecorrido">
+                    Longitud del recorrido
+                </label>
+                <input
+                    id="longitudRecorrido"
+                    type="number"
+                    min="1"
+                    max="50"
+                    placeholder="Introduce la longitud"
+                >
+            </div>
+            <button
+                id="botonCrearRecorrido"
+                onclick="crearRecorridoInverso()"
+            >
+                Crear recorrido
+            </button>
+        </div>
+
+        <!-- RECORRIDO -->
+
+        <div class="tarjeta">
+            <h2>
+                📍 Recorrido
+            </h2>
+            <p class="descripcion">
+                Introduce los estados del recorrido.
+                El primer estado comienza en 0.
+            </p>
+            <div id="contenedorRecorridoInverso">
+            </div>
+            <button
+                id="botonReconstruir"
+                onclick="procesarRecorridoInverso()"
+                disabled
+            >
+                Reconstruir número
+            </button>
+        </div>
+	<div class="tarjeta">
+	    <button
+		id="botonNuevoEjercicio"
+		onclick="nuevoEjercicio()"
+	    >
+		Nuevo ejercicio
+	    </button>
+    </section>
+
+    <!-- =================================================
+         COLUMNA 2
+    ================================================== -->
+
+    <section id="zonaResultados">
+        <div class="tarjeta">
+            <h2>
+                🔎 Pasos del recorrido
+            </h2>
+            <div id="posibilidadesRecorridoInverso">
+            </div>
+        </div>
+        <div
+            class="tarjeta"
+            id="tarjetaNumeros"
+        >
+            <h2>
+                🔢 Números posibles
+            </h2>
+            <div id="numeroReconstruido">
+            </div>
+        </div>
+    </section>
+
+    <!-- =================================================
+         COLUMNA 3
+    ================================================== -->
+
+    <section id="zonaGrafo">
+        <div id="cabeceraGrafo">
+            <h2>
+                Grafo de divisibilidad
+            </h2>
+            <p>
+                Representación del recorrido introducido
+                sobre los estados módulo
+            </p>
+        </div>
+        <div id="cuadroGrafo">
+            <svg
+                id="grafo"
+                viewBox="0 0 700 700"
+                preserveAspectRatio="xMidYMid meet"
+            >
+                <defs>
+                    <marker
+                        id="flechaGris"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="gray"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaAzul"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaRoja"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaAzulPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+                    <marker
+                        id="flechaRojaPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </section>
+</main>
+    <script src="reconstruction-script-es.js"></script>
+
+</body>
+
+</html>

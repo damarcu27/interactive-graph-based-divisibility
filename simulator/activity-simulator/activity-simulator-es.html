@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Divisibilidad</title>
+    <link rel="stylesheet" href="style-activity-simulator.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     TÍTULO
+====================================================== -->
+
+<h1>
+    SIMULADOR INTERACTIVO BASADO EN GRAFOS PARA EL ESTUDIO DE LA DIVISIBILIDAD
+</h1>
+
+<!-- =====================================================
+     ESTRUCTURA PRINCIPAL
+     
+     IZQUIERDA | CENTRO | DERECHA
+====================================================== -->
+
+<div id="principal">
+
+    <!-- =================================================
+         COLUMNA 1
+         PARÁMETROS Y CONTROLES
+    ================================================== -->
+
+    <div id="columnaIzquierda">
+
+        <!-- =============================================
+             PARÁMETROS
+        ============================================== -->
+
+        <div class="tarjeta">
+            <h2>
+                ⚙️ Parámetros del simulador
+            </h2>
+            <div class="campo">
+                <label for="modulo">
+                    Módulo
+                </label>
+                <input
+                    id="modulo"
+                    type="number"
+                    min="2"
+                    max="20"
+                    placeholder="Introduce el módulo"
+                >
+            </div>
+            <div class="campo">
+                <label for="numero">
+                    Número
+                </label>
+                <input
+                    id="numero"
+                    type="number"
+                    min="0"
+                    placeholder="Introduce el número"
+                >
+            </div>
+            <div class="campo">
+                <label for="velocidad">
+                    Velocidad de la animación
+                </label>
+                <input
+                    id="velocidad"
+                    type="range"
+                    min="100"
+                    max="1500"
+                    value="700"
+                >
+            </div>
+        </div>
+
+        <!-- =============================================
+             SIMULACIÓN AUTOMÁTICA
+        ============================================== -->
+
+        <div class="tarjeta">
+            <h2>
+                ▶️ Simulación automática
+            </h2>
+            <button
+                id="botonIniciar"
+                onclick="iniciarDesdeCero()"
+            >
+                Iniciar simulación automática
+            </button>
+            <button
+                id="pausa"
+                onclick="pausaReanudar()"
+            >
+                Pausar
+            </button>
+        </div>
+
+        <!-- =============================================
+             SIMULACIÓN MANUAL
+        ============================================== -->
+
+        <div class="tarjeta">
+
+            <h2>
+                🖐️ Simulación manual
+            </h2>
+            <button
+                id="botonManual"
+                onclick="iniciarManual()"
+            >
+                Iniciar simulación manual
+            </button>
+            <div class="campo">
+                <div id="textoPasoManual">
+                    Paso 0 / 0
+                </div>
+                <input
+                    id="pasoManual"
+                    type="range"
+                    min="0"
+                    max="0"
+                    value="0"
+                    step="1"
+                    disabled
+                >
+            </div>
+        </div>
+	<div class="tarjeta">
+            <button
+                id="botonnuevaSimulacion"
+                onclick="nuevaSimulacion()"
+            >
+                Nueva simulación
+            </button>
+	</div>
+    </div>
+
+    <!-- =================================================
+         COLUMNA 2
+         NÚMERO EN PROCESO + INFORMACIÓN
+    ================================================== -->
+
+    <div id="columnaCentro">
+
+        <!-- =============================================
+             NÚMERO EN PROCESO
+        ============================================== -->
+
+        <div class="tarjeta tarjeta-numero">
+            <h2>
+                🔢 Número en proceso
+            </h2>
+            <div id="numeroAnimado">
+            </div>
+            <div id="calculoAnimado" style="display: none;">
+            </div>
+        </div>
+
+        <!-- =============================================
+             INFORMACIÓN
+        ============================================== -->
+
+        <div
+            id="contenedorInfo"
+            class="tarjeta tarjeta-informacion"
+        >
+            <h2>
+                📊 Información
+            </h2>
+            <div
+                id="informacion"
+                class="panel-info"
+                style="display: none;"
+            >
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================
+         COLUMNA 3
+         GRAFO
+    ================================================== -->
+
+    <div id="columnaDerecha">
+
+        <!-- =============================================
+             CABECERA DEL GRAFO
+        ============================================== -->
+
+        <div id="cabeceraGrafo">
+            <h2>
+                Grafo de divisibilidad
+            </h2>
+            <p>
+                Representación gráfica del proceso de divisibilidad
+            </p>
+        </div>
+
+        <!-- =============================================
+             GRAFO
+        ============================================== -->
+
+        <div id="cuadroGrafo">
+            <svg
+                id="grafo"
+                viewBox="0 0 700 700"
+                preserveAspectRatio="xMidYMid meet"
+            >
+                <defs>
+
+                    <!-- =================================
+                         FLECHA GRIS
+                    ================================== -->
+
+                    <marker
+                        id="flechaGris"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="gray"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         FLECHA AZUL
+                    ================================== -->
+
+                    <marker
+                        id="flechaAzul"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         FLECHA ROJA
+                    ================================== -->
+
+                    <marker
+                        id="flechaRoja"
+                        markerWidth="7"
+                        markerHeight="7"
+                        refX="6"
+                        refY="3.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,7 L7,3.5 z"
+                            fill="red"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         FLECHA AZUL PEQUEÑA
+                    ================================== -->
+
+                    <marker
+                        id="flechaAzulPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="blue"
+                        />
+                    </marker>
+
+                    <!-- =================================
+                         FLECHA ROJA PEQUEÑA
+                    ================================== -->
+
+                    <marker
+                        id="flechaRojaPequena"
+                        markerWidth="5"
+                        markerHeight="5"
+                        refX="4.5"
+                        refY="2.5"
+                        orient="auto"
+                    >
+                        <path
+                            d="M0,0 L0,5 L5,2.5 z"
+                            fill="red"
+                        />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="activity-simulator-script-es.js"></script>
+
+</body>
+
+</html>
